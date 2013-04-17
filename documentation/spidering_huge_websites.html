@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
+<head>
+  <title>PHPCrawl webcrawler library for PHP</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <div id="page">
+    
+      <div id="top">
+        <h1 style="margin: 0px; float: left;">PHPCrawl webcrawler library</h1>
+        
+        <div style="margin-left: 670px; margin-top: 14px; font-size: 12px;">Docs for version 0.8x</div>
+      </div>
+      
+      <div id="container">
+      
+        <div id="left">
+        
+          <ul>
+          <li><a href="index.html">About PHPCrawl</a></li>
+          <li>
+          Documentation
+           <ul id="submenu">
+           <li><a href="requirements.html">Requirements</a></li>
+           <li><a href="quickstart.html">Installation & Quickstart</a></li>
+           <li><a href="example.html">Example</a></li>
+           <li><a href="multiprocesses.html">Using multi-processes</a></li>
+           <li><a href="multiprocessing_modes.html">Multiprocessing Modes</a></li>
+           <li><a href="spidering_huge_websites.html">Spidering huge websites</a></li>
+           <li><a href="faq.html">FAQ</a></li>
+           <li><a href="classreferences/index.html" target="blank"><u>Complete Class References</u></a></li>
+           </ul>
+          </li>
+          
+          <li class="fat"><a href="http://sourceforge.net/projects/phpcrawl/files/PHPCrawl/" target="_blank">Download PHPCrawl</a></li>
+          <li><a href="testinterface.html">Testinterface</a></li>
+          <li><a href="versionhistory.html">Version history</a></li>
+          <li><a href="http://sourceforge.net/projects/phpcrawl/forums/forum/307696" target="_blank">Forum</a></li>
+          <li><a href="http://sourceforge.net/tracker/?group_id=89439&atid=590146" target="_blank">Report a bug</a></li>
+          </ul>
+         
+         <div id="sf">
+         <a href="http://sourceforge.net/projects/phpcrawl"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=89439&amp;type=14" width="150" height="40" alt="Get PHPCrawl at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+         </div>
+         
+         <div id="sf">
+         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+         <input type="hidden" name="cmd" value="_s-xclick">
+         <input type="hidden" name="hosted_button_id" value="M53G4LP6XNHM4">
+         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+         <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+         </form>
+         </div>
+
+        </div>
+        
+        <div id="content">
+        <h3>Spidering huge websites</h3><br />
+        
+        By default, phpcrawl is using local memory (RAM) for internally caching/queueing found URLs and other data.
+        So when crawling large websites consisting of thousands of pages, the php-memory-limit or the memory-limit in general
+        may be hit at some time.<br /><br />
+        
+        But since version 0.8, phpcrawl alternatively is able to use a SQLite database-file for internally caching URLs. When activating this typ
+        of caching, it shoudln't be a problem anymore to spider huge websites.<br /><br />
+        
+        To activate the SQLite-cache, simply use the following <a href="classreferences/PHPCrawler/method_detail_tpl_method_setUrlCacheType.htm" target="blank">setUrlCacheType()</a>-setting:
+        
+        <p id="code">
+        <span style="color: #000000">
+        <span style="color: #0000BB">$crawler</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setUrlCacheType</span><span style="color: #007700">(</span><span style="color: #0000BB">PHPCrawlerUrlCacheTypes</span><span style="color: #007700">::</span><span style="color: #0000BB">URLCACHE_SQLITE</span><span style="color: #007700">);
+        <br /></span>
+        </span>
+        </p>
+        
+        By default, the SQLite-database-file will be placed in the systems default temporary directory on the local harddrive.<br />
+        To increase performance of the SQLite-cache you may set it's location to a shared-memory device like "/dev/shm/" (for Debian/Ubuntu)
+        by using the <a href="classreferences/PHPCrawler/method_detail_tpl_method_setWorkingDirectory.htm" target="blank">setWorkingDirectory()</a>-method.
+       
+        <p id="code">
+        <span style="color: #000000">
+        <span style="color: #0000BB">$crawler</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setWorkingDirectory</span><span style="color: #007700">(</span><span style="color: #DD0000">"/dev/shm/"</span><span style="color: #007700">);
+        <br /></span><span style="color: #0000BB">$crawler</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setUrlCacheType</span><span style="color: #007700">(</span><span style="color: #0000BB">PHPCrawlerUrlCacheTypes</span><span style="color: #007700">::</span><span style="color: #0000BB">URLCACHE_SQLITE</span><span style="color: #007700">);
+        <br /></span>
+        </span>
+        </p>
+        
+        Please note that the PHP PDO-extension together with the SQLite-driver (PDO_SQLITE) has to be installed and activated to use this type of caching.
+      </div>
+  
+  </div>
+  
+  
+  
+</div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
+<head>
+  <title>PHPCrawl webcrawler library for PHP</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <div id="page">
+    
+      <div id="top">
+        <h1 style="margin: 0px; float: left;">PHPCrawl webcrawler library</h1>
+        
+        <div style="margin-left: 670px; margin-top: 14px; font-size: 12px;">Docs for version 0.8x</div>
+      </div>
+      
+      <div id="container">
+      
+        <div id="left">
+        
+          <ul>
+          <li><a href="index.html">About PHPCrawl</a></li>
+          <li>
+          Documentation
+           <ul id="submenu">
+           <li><a href="requirements.html">Requirements</a></li>
+           <li><a href="quickstart.html">Installation & Quickstart</a></li>
+           <li><a href="example.html">Example</a></li>
+           <li><a href="multiprocesses.html">Using multi-processes</a></li>
+           <li><a href="multiprocessing_modes.html">Multiprocessing Modes</a></li>
+           <li><a href="spidering_huge_websites.html">Spidering huge websites</a></li>
+           <li><a href="faq.html">FAQ</a></li>
+           <li><a href="classreferences/index.html" target="blank"><u>Complete Class References</u></a></li>
+           </ul>
+          </li>
+          
+          <li class="fat"><a href="http://sourceforge.net/projects/phpcrawl/files/PHPCrawl/" target="_blank">Download PHPCrawl</a></li>
+          <li><a href="testinterface.html">Testinterface</a></li>
+          <li><a href="versionhistory.html">Version history</a></li>
+          <li><a href="http://sourceforge.net/projects/phpcrawl/forums/forum/307696" target="_blank">Forum</a></li>
+          <li><a href="http://sourceforge.net/tracker/?group_id=89439&atid=590146" target="_blank">Report a bug</a></li>
+          </ul>
+         
+         <div id="sf">
+         <a href="http://sourceforge.net/projects/phpcrawl"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=89439&amp;type=14" width="150" height="40" alt="Get PHPCrawl at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+         </div>
+         
+         <div id="sf">
+         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+         <input type="hidden" name="cmd" value="_s-xclick">
+         <input type="hidden" name="hosted_button_id" value="M53G4LP6XNHM4">
+         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+         <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+         </form>
+         </div>
+
+        </div>
+        
+        <div id="content">
+        <h3>Using multiple processes</h3><br />
+        Since version 0.8 phpcrawl is able to use multiple processes to spider a website. In most cases using
+        more processes simultaneously will speed up the crawling-procedure dramatically.<br /><br />
+        
+        In order to start phpcrawl in multi-process-mode, simply call the <a href="classreferences/PHPCrawler/method_detail_tpl_method_goMultiProcessed.htm" target="blank">goMultiProcessed()</a>-method
+        instead of the <a href="classreferences/PHPCrawler/method_detail_tpl_method_go.htm" target="blank">go()</a>-method to start the crawler.
+        
+        <p id="code">
+        <span style="color: #0000BB">$crawler&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MyCrawler</span><span style="color: #007700">();
+        <br /></span><span style="color: #0000BB">$crawler</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setURL</span><span style="color: #007700">(</span><span style="color: #DD0000">"www.foo.com"</span><span style="color: #007700">);
+        <br /></span><span style="color: #0000BB">$crawler</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addContentTypeReceiveRule</span><span style="color: #007700">(</span><span style="color: #DD0000">"#text/html#"</span><span style="color: #007700">);
+
+        <br />
+        <br /></span><span style="color: #FF8000">//&nbsp;...
+        <br />
+        <br />//&nbsp;Start&nbsp;crawling&nbsp;by&nbsp;using&nbsp;5&nbsp;processes
+        <br /></span><span style="color: #0000BB">$crawler</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">goMultiProcessed</span><span style="color: #007700">(</span><span style="color: #0000BB">5</span><span style="color: #007700">);
+
+        <br /></span>
+        </span>
+        </p>
+        
+        However, there are some things to consider when using the multi-process mode:
+        
+        <ul>
+          <li>Some PHP-extensions are required to successfully run phpcrawl in multi-process mode (PCNTL-extension, SEMAPHORE-extension, PDO-extension). For more details see the <a href="requirements.html">requirements page</a>.</li>
+          <li>The multi-process mode only works on unix/linux-based systems</li>
+          <li>Scripts using phpcrawl with mutliple processes have to be run from the commandline (php CLI)</li>
+          <li>Increasing the number of processes to very high values does't automatically mean that the crawling-process will go off faster!
+              The ideally number of processes depends on a lot of circumstances like the available bandwidth, the local technical environment (CPU),
+              the delivery-rate and data-rate of the server hosting the taget-website and so on.<br />
+              Using something between 3 to 10 processes should be good values to start from.
+          </li>
+        </ul>
+        </div>
+        
+      </div>
+  
+  </div>
+  
+  
+  
+</div>
+
+</body>
+</html>

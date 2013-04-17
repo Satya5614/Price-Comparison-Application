@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
+<head>
+  <title>PHPCrawl webcrawler library for PHP</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <div id="page">
+    
+      <div id="top">
+        <h1 style="margin: 0px; float: left;">PHPCrawl webcrawler library</h1>
+        
+        <div style="margin-left: 670px; margin-top: 14px; font-size: 12px;">Docs for version 0.8x</div>
+      </div>
+      
+      <div id="container">
+      
+        <div id="left">
+        
+          <ul>
+          <li><a href="index.html">About PHPCrawl</a></li>
+          <li>
+          Documentation
+           <ul id="submenu">
+           <li><a href="requirements.html">Requirements</a></li>
+           <li><a href="quickstart.html">Installation & Quickstart</a></li>
+           <li><a href="example.html">Example</a></li>
+           <li><a href="multiprocesses.html">Using multi-processes</a></li>
+           <li><a href="multiprocessing_modes.html">Multiprocessing Modes</a></li>
+           <li><a href="spidering_huge_websites.html">Spidering huge websites</a></li>
+           <li><a href="faq.html">FAQ</a></li>
+           <li><a href="classreferences/index.html" target="blank"><u>Complete Class References</u></a></li>
+           </ul>
+          </li>
+          
+          <li class="fat"><a href="http://sourceforge.net/projects/phpcrawl/files/PHPCrawl/" target="_blank">Download PHPCrawl</a></li>
+          <li><a href="testinterface.html">Testinterface</a></li>
+          <li><a href="versionhistory.html">Version history</a></li>
+          <li><a href="http://sourceforge.net/projects/phpcrawl/forums/forum/307696" target="_blank">Forum</a></li>
+          <li><a href="http://sourceforge.net/tracker/?group_id=89439&atid=590146" target="_blank">Report a bug</a></li>
+          </ul>
+         
+         <div id="sf">
+         <a href="http://sourceforge.net/projects/phpcrawl"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=89439&amp;type=14" width="150" height="40" alt="Get PHPCrawl at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+         </div>
+         
+         <div id="sf">
+         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+         <input type="hidden" name="cmd" value="_s-xclick">
+         <input type="hidden" name="hosted_button_id" value="M53G4LP6XNHM4">
+         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+         <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+         </form>
+         </div>
+
+        </div>
+        
+        <div id="content">
+        <h3>FAQ</h3>
+        <ol>
+          <li><b>Sometimes it happens that (almost) no information about a document is passed to the user-function handleDocumentInfo(), most
+                 properties of the corresponding PHPCrawlerDocumentInfo-object are emtpy.</b><br /><br />
+                 Mostly the reason for this is an error that occurred during the request of the document. In this case,
+                 the PHPCrawlerDocumentInfo-property "error_occured" will be true and "error_string" contains the error-report as human readable string.
+                 For timeout-errors (like "Socket-stream timed out"), try to increase the connection-timeout and/or the stream-timeout.
+              
+                 <p id="code">
+                 $crawler->setStreamTimeout(5); // defaults to 2 seconds
+                 $crawler->setConnectionTimeout(10); // defaults to 5 seconds
+                 </p>
+          </li>
+          
+          <li><b>When trying to start the crawler in multi-process-mode, a lot of warnings like "sem_get() [function.sem-get]:
+              failed for key 0x5202e59f: No space left on device" are thrown.</b><br><br>
+              PHPCrawl is using semaphores for process-communication. When crawling-processes get aborted, the used sempahores
+              don't get removed. If this happens too often, there will be no more space for new semaphores and the above error(s)
+              occur. To remove "dead" semaphores, use the following unix command:<br />
+              
+              <p id="code">
+              for i in `ipcs -s | awk '/phpcrawl_user/ {print $2}'`; do (ipcrm -s $i); done
+              </p>
+              
+              ... whereas "phpcrawl_user" is the user who is running the crawler.
+          </li>
+        </ol>
+        </div>
+        
+      </div>
+  
+  </div>
+  
+  
+  
+</div>
+
+</body>
+</html>
