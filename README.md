@@ -1,7 +1,7 @@
 minor-project-6thsem
 ====================
 
-Application to provide price of any product from different e-commerce websites.
+Application to compare price of any product from different e-commerce websites.
 
 ====================
 
